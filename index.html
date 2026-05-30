@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Design Generator</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 30px 15px;
+  }
+  .main-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+  .top-banner {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #222222, #444444);
+    display: flex;
+    flex-direction: column; justify-content: center; align-items: center;
+    color: #fff; padding: 20px; text-align: center;
+  }
+  .top-banner h1 {
+    font-size: 34px; margin-bottom: 10px; letter-spacing: 2px;
+  }
+  .top-banner p {
+    font-size: 16px; opacity: 0.85; max-width: 600px; line-height: 1.6;
+  }
+  .big-fashion-banner {
+    width: 100%; height: 260px; object-fit: cover; display: block;
+  }
+  .content-box {
+    padding: 35px 40px;
+  }
+  .content-box h2 {
+    text-align: center; font-size: 24px; color: #222; margin-bottom: 25px;
+  }
+  textarea {
+    width: 100%; height: 100px; padding: 15px;
+    border: 1px solid #ddd; border-radius: 10px; resize: none;
+    font-size: 15px; margin-bottom: 18px; line-height: 1.5;
+  }
+  .generate-btn {
+    width: 100%; padding: 16px; background: #222; color: #fff;
+    border: none; border-radius: 10px; font-size: 17px; cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .generate-btn:hover {
+    background: #444;
+  }
+  #result-area {
+    margin-top: 30px; text-align: center;
+  }
+  .loading {
+    color: #666; font-size: 16px;
+  }
+  #result-area img {
+    max-width: 100%; border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  }
+  .tip-text {
+    margin-top: 16px; font-size: 15px; color: #28a745;
+  }
+  .footer-tips {
+    padding: 22px 40px; background: #f8f8f8; text-align: center;
+    color: #555; line-height: 1.7; font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="main-wrap">
+  <div class="top-banner">
+    <h1>AI Custom Design</h1>
+    <p>Build exclusive personality and fashion aesthetics. Realize your creative concepts with custom-made products.</p >
+  </div>
+
+  < img class="big-fashion-banner" src="https://picsum.photos/seed/fashion-designer-artboard/1200/400" alt="Fashion Design">
+
+  <div class="content-box">
+    <h2>Start Your Product Hand-Painted Pattern AI Generation</h2>
+    <textarea id="prompt" placeholder="Please enter your design idea"></textarea>
+    <button class="generate-btn" onclick="generateImage()">Enable DistinctiveTrend AI Generation</button>
+    <div id="result-area"></div>
+  </div>
+
+  <div class="footer-tips">
+    Distinctive Trend provides AI design services. All generated images are for reference only. Please contact customer service for official design solutions.
+  </div>
+</div>
+
+<script>
+function generateImage() {
+  const prompt = document.getElementById("prompt").value.trim();
+  const resultBox = document.getElementById("result-area");
+
+  resultBox.innerHTML = `<p class="loading">Distinctive Trend AI generating, please wait 2~5 seconds.</p >`;
+
+  setTimeout(() => {
+    const encodedPrompt = encodeURIComponent(prompt);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true`;
+    resultBox.innerHTML = `
+      < img src="${imageUrl}" alt="Generated design">
+      <p class="tip-text">✅ DISTINCTIVE TREND AI has intelligently generated your design pattern. Please long-press the image to save. For reference only.</p >
+    `;
+  }, 600);
+}
+</script>
+</body>
+</html>

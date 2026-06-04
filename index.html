@@ -29,7 +29,7 @@ h3{font-size:26px;text-align:center;margin:25px 0 12px}
 
 <div class="wrap">
   <h3>Start Your Product Hand-Painted Pattern AI Generation</h3>
-  <input id="userInput" value="custom fashion print pattern">
+  <input id="userInput" value="Cat">
   <button id="genBtn">Enable DistinctiveTrend AI Generation</button>
 
   < img id="resultImg" alt="Generated design">
@@ -54,7 +54,6 @@ img.onmouseup=img.onmouseleave=()=>clearTimeout(longTimer)
 
 btn.onclick=()=>{
   let word=encodeURIComponent(inp.value.trim())
-  // 更换allorigins备用跨域，规避corsproxy失效
   saveUrl = `https://api.allorigins.win/raw?url=https://image.pollinations.ai/prompt/${word}?width=1024&height=1024&nologo=true`
   img.src = saveUrl
 }

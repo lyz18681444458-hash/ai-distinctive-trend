@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Custom Design | Distinctive Trend</title>
-<script src="https://js.puter.com/v2/"></script>
 <style>
 *{box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;margin:0;padding:0}
 .top-black{
@@ -71,6 +70,11 @@ h3{font-size:36px;text-align:center;margin:30px 0 14px;color:#222;line-height:1.
 </div>
 
 <script>
+// Pollinations双域名备用，无第三方JS引入
+const DOMAINS = ["https://image.pollinations.ai/prompt/","https://pollinations.ai/prompt/"];
+const PARAM = "?model=flux&width=1024&height=1024&nologo=true";
+let domIndex=0;
+
 const langData={
 en:{
 title:"AI Custom Design | Distinctive Trend",
@@ -237,7 +241,7 @@ img.onmousedown = ()=>{
   img.onmouseup=()=>clearTimeout(t);
 }
 
-btn.onclick = async function(){
+btn.onclick = function(){
   const txt = langData[langSel.value];
   let prompt = input.value.trim();
   if(!prompt){
@@ -247,17 +251,17 @@ btn.onclick = async function(){
   btn.disabled = true;
   img.style.display = "none";
   loadTip.innerText = txt.loadingTip;
-  const fullPrompt = prompt + ",t-shirt graphic print,clean pure white background,high detail vector";
-  try{
-    const imgSrc = await puter.ai.txt2img(fullPrompt,{model:"flux"});
-    saveImgUrl = imgSrc;
-    img.src = imgSrc;
-    img.onload = ()=>{
-      loadTip.innerText = txt.successTip;
-      img.style.display = "block";
-      btn.disabled = false;
-    }
-  }catch(e){
+  const fullTxt = prompt + ",t-shirt graphic print,clean pure white background,vector graphic,sharp outline";
+  let url = DOMAINS[domIndex] + encodeURIComponent(fullTxt) + PARAM;
+  domIndex = (domIndex+1)%DOMAINS.length;
+  saveImgUrl = url;
+  img.src = url;
+  img.onload = ()=>{
+    loadTip.innerText = txt.successTip;
+    img.style.display = "block";
+    btn.disabled = false;
+  }
+  img.onerror = ()=>{
     loadTip.innerText = txt.errTip;
     btn.disabled = false;
   }

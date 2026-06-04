@@ -3,59 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Custom Design | Distinctive Trend</title>
+<!-- Puter官方CDN，Vercel白名单域名，不会被拦截 -->
+<script src="https://js.puter.com/v2/"></script>
 <style>
-*{box-sizing:border-box;font-family:Arial}
+*{box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;margin:0;padding:0}
 .top-black{
-  background:#222;color:#fff;text-align:center;padding:30px 20px;
+  background:#000;color:#fff;text-align:center;padding:32px 20px;border-radius:12px;
+  max-width:92%;margin:12px auto 20px;
 }
-.top-black h1{margin:0;font-size:34px}
-.top-black p{margin:8px 0 0;font-size:16px;line-height:1.4}
-.big-fashion-banner{width:100%;display:block;margin:10px 0}
-.wrap{padding:0 15px}
-h3{font-size:26px;text-align:center;margin:25px 0 12px}
-#userInput{width:100%;padding:18px;font-size:18px;border:1px solid #ccc;border-radius:4px}
-#genBtn{width:100%;background:#111;color:#fff;border:none;padding:16px;margin:15px 0;font-size:17px;border-radius:4px}
-#resultImg{max-width:100%}
-.green-text{color:#239930;margin:8px 0}
-.bottom-small{font-size:13px;color:#444;margin-top:20px}
+.top-black h1{font-size:42px;margin:0 0 12px;line-height:1.2}
+.top-black p{font-size:18px;line-height:1.5}
+.lang-box{max-width:92%;margin:12px auto;text-align:right;}
+#langSelect{padding:8px 12px;font-size:16px;border:1px solid #ccc;border-radius:6px;}
+.wrap{max-width:92%;margin:0 auto}
+h3{font-size:36px;text-align:center;margin:30px 0 14px;color:#222;line-height:1.3}
+#userInput{width:100%;padding:20px;font-size:22px;border:1px solid #cccccc;border-radius:8px;outline:none}
+.tip-text{color:#777;font-size:17px;margin:10px 0 20px;}
+#genBtn{width:100%;background:#111;color:#fff;border:none;padding:22px 0;font-size:22px;border-radius:8px;cursor:pointer}
+#genBtn:disabled{background:#777;cursor:not-allowed}
+.loadText{color:#666;font-size:22px;text-align:center;margin:25px 0}
+#resultImg{max-width:100%;margin:15px auto;display:none;border:1px solid #eee;border-radius:6px}
+.green-text{color:#239930;font-size:19px;margin:12px 0}
+.bottom-desc{font-size:18px;color:#555;line-height:1.5}
+.customer-box{margin:50px auto 30px;text-align:center;max-width:92%}
+.customer-title{font-size:30px;color:#222;margin-bottom:22px}
+.btn-group{display:flex;flex-direction:column;gap:18px;align-items:center}
+.whatsapp-btn{width:92%;display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;padding:20px 0;border-radius:99px;text-decoration:none;font-size:22px;font-weight:bold}
+.line-btn{width:92%;display:flex;align-items:center;justify-content:center;gap:10px;background:#00C300;color:#fff;padding:20px 0;border-radius:99px;text-decoration:none;font-size:22px;font-weight:bold}
 </style>
 </head>
 <body>
-<div class="top-black">
-  <h1>AI Custom Design</h1>
-  <p>Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made products.</p >
+<div class="lang-box">
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="zh">简体中文</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="ja">日本語</option>
+    <option value="ko">한국어</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+  </select>
 </div>
-< img class="big-fashion-banner" src="https://picsum.photos/seed/fashion-designer-artboard/1200/400" alt="Fashion Design">
+
+<div class="top-black">
+  <h1 data-i18n="title">AI Custom Design | Distinctive Trend</h1>
+  <p data-i18n="desc">Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made apparel patterns.</p >
+</div>
 
 <div class="wrap">
-  <h3>Start Your Product Hand-Painted Pattern AI Generation</h3>
-  <input id="userInput" placeholder="Enter your design ideas">
-  <button id="genBtn">Enable DistinctiveTrend AI Generation</button>
-
+  <h3 data-i18n="subTitle">Start Your Product Hand-Painted Pattern AI Generation</h3>
+  <input id="userInput">
+  <div class="tip-text" data-i18n="inputTip">Tips:Describe clothing print details for accurate image</div>
+  <button id="genBtn" data-i18n="btnText">Enable DistinctiveTrend AI Generation</button>
+  <div class="loadText" id="loadingTip"></div>
   < img id="resultImg" alt="Generated design">
-  <p class="green-text">☑ DISTINCTIVE TREND AI has intelligently generated your design pattern. Please long-press the image to save. For reference only.</p >
-  <p class="bottom-small">Distinctive Trend provides AI design services. All generated images are for reference only. Please contact customer service for official design solutions.</p >
+  <p class="green-text" data-i18n="saveTip">☑ DISTINCTIVE TREND AI has intelligently generated your design pattern. Please long-press the image to save. For reference only.</p >
+  <p class="bottom-desc" data-i18n="footText">Distinctive Trend provides AI design services. All generated images are for reference only. Please contact customer service for official design solutions.</p >
+</div>
+
+<div class="customer-box">
+  <div class="customer-title" data-i18n="serviceTitle">Contact Our Customer Service</div>
+  <div class="btn-group">
+    <a class="whatsapp-btn" href=" " target="_blank" rel="noopener">💬 <span data-i18n="waText">WhatsApp Support</span></a >
+    <a class="line-btn" href="https://line.me/ti/p/K46gpe9AsF" target="_blank" rel="noopener">🟢 <span data-i18n="lineText">LINE Support</span></a >
+  </div>
 </div>
 
 <script>
-const inp=document.getElementById('userInput')
-const btn=document.getElementById('genBtn')
-const img=document.getElementById('resultImg')
-let saveUrl=""
-let longTimer=null
+const langData={
+en:{
+title:"AI Custom Design | Distinctive Trend",
+desc:"Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made apparel patterns.",
+subTitle:"Start Your Product Hand-Painted Pattern AI Generation",
+inputPlaceholder:"Enter your design ideas",
+inputTip:"Tips:Describe clothing print details for accurate image",
+btnText:"Enable DistinctiveTrend AI Generation",
+emptyTip:"Please fill in your design ideas first!",
+loadingTip:"AI is generating your design,please wait 5~12 seconds...",
+successTip:"Generate finished successfully!",
+errTip:"Load failed,please retry later",
+saveTip:"☑ DISTINCTIVE TREND AI has intelligently generated your design pattern. Please long-press the image to save. For reference only.",
+footText:"Distinctive Trend provides AI design services. All generated images are for reference only. Please contact customer service for official design solutions.",
+serviceTitle:"Contact Our Customer Service",
+waText:"WhatsApp Support",
+lineText:"LINE Support"
+},
+zh:{
+title:"AI定制设计 | Distinctive Trend",
+desc:"打造专属个性时尚美学，把你的创意落地为定制服饰印花图案。",
+subTitle:"开启手绘图案AI智能生成",
+inputPlaceholder:"输入你的设计想法",
+inputTip:"提示：越详细描述印花细节，生成图片越精准",
+btnText:"启动DistinctiveTrend AI生成",
+emptyTip:"请先填写你的设计想法！",
+loadingTip:"AI正在根据你的文案生成图案，请等待5~12秒...",
+successTip:"图案生成完成！",
+errTip:"生成失败，请更换关键词重试",
+saveTip:"☑ DISTINCTIVE TREND AI已生成图案，长按图片保存，图片仅供参考。",
+footText:"Distinctive Trend提供AI设计服务，生成图片仅作参考，如需定稿设计请联系客服。",
+serviceTitle:"联系在线客服",
+waText:"WhatsApp客服",
+lineText:"LINE客服"
+},
+fr:{
+title:"Design IA | Distinctive Trend",
+desc:"Créez une esthétique de mode unique, concrétisez vos idées en motifs de vêtements personnalisés.",
+subTitle:"Génération IA de motifs peints à la main",
+inputPlaceholder:"Saisissez votre idée",
+inputTip:"Conseil: décrivez précisément votre motif pour un rendu fidèle",
+btnText:"Lancer la génération IA DistinctiveTrend",
+emptyTip:"Veuillez saisir votre idée !",
+loadingTip:"L'IA génère votre motif, attendez 5~12 secondes...",
+successTip:"Génération terminée !",
+errTip:"Échec chargement, réessayez",
+saveTip:"☑ L'IA Distinctive Trend a généré votre motif, maintenez l'image pour enregistrer.",
+footText:"Distinctive Trend propose des services de conception IA, images à titre indicatif.",
+serviceTitle:"Contacter le service client",
+waText:"Assistance WhatsApp",
+lineText:"Assistance LINE"
+},
+de:{
+title:"KI-Design | Distinctive Trend",
+desc:"Erstelle individuelle Modeästhetik und setze deine Ideen zu Kleidungsmustern um.",
+subTitle:"KI-Erstellung handgemalter Druckmuster",
+inputPlaceholder:"Geben Sie Ihre Designidee ein",
+inputTip:"Tipp: Detaillierte Beschreibung für passendes Motiv",
+btnText:"DistinctiveTrend KI-Generierung starten",
+emptyTip:"Bitte geben Sie Ihre Designidee ein!",
+loadingTip:"KI erstellt Motiv, bitte 5~12 Sekunden warten...",
+successTip:"Erstellung abgeschlossen!",
+errTip:"Laden fehlgeschlagen, nochmal versuchen",
+saveTip:"☑ Distinctive Trend KI hat dein Motiv erstellt, lang drücken zum Speichern.",
+footText:"Distinctive Trend bietet KI-Design, Bilder nur als Referenz.",
+serviceTitle:"Kundenservice kontaktieren",
+waText:"WhatsApp Support",
+lineText:"LINE Support"
+},
+ja:{
+title:"AIデザイン | Distinctive Trend",
+desc:"独自のファッションデザインを作成、アイデアを衣類プリント柄に実現。",
+subTitle:"手描き柄AI自動生成開始",
+inputPlaceholder:"デザイン内容を入力",
+inputTip:"ヒント：詳細記載で正確なイラスト生成",
+btnText:"DistinctiveTrend AI生成実行",
+emptyTip:"デザイン内容を入力してください",
+loadingTip:"AI作成中、5～12秒お待ちください...",
+successTip:"画像作成完了！",
+errTip:"読み込み失敗、再試行",
+saveTip:"☑ Distinctive Trend AIにて柄生成完了、長押し保存可能",
+footText:"Distinctive Trend AIデザインサービス、画像は参考用",
+serviceTitle:"カスタマーサポートへ連絡",
+waText:"WhatsAppサポート",
+lineText:"LINEサポート"
+},
+ko:{
+title:"AI 디자인 | Distinctive Trend",
+desc:"독자적인 패션 디자인 제작, 아이디어를 의류 프린트 무늬로 구현.",
+subTitle:"수작업 무늬 AI 생성 시작",
+inputPlaceholder:"디자인 내용 입력",
+inputTip:"팁: 디테일하게 묘사하면 정확한 이미지 생성",
+btnText:"DistinctiveTrend AI 생성 실행",
+emptyTip:"디자인 내용을 입력하세요!",
+loadingTip:"AI 제작 중,5~12초 대기바랍니다...",
+successTip:"이미지 생성 완료!",
+errTip:"로딩 실패, 재시도",
+saveTip:"☑ Distinctive Trend AI로 무늬 생성, 길게 눌러 저장",
+footText:"Distinctive Trend AI 디자인 서비스, 이미지는 참고용",
+serviceTitle:"고객센터 문의",
+waText:"왓츠앱 상담",
+lineText:"라인 상담"
+},
+es:{
+title:"Diseño IA | Distinctive Trend",
+desc:"Crea estética de moda exclusiva, convierte tus ideas en estampados personalizados.",
+subTitle:"Generación IA de estampados dibujados",
+inputPlaceholder:"Escribe tu idea",
+inputTip:"Consejo: describe detalles para un diseño preciso",
+btnText:"Activar generación IA DistinctiveTrend",
+emptyTip:"Escribe tu idea primero!",
+loadingTip:"La IA diseña, espera 5 a 12 segundos...",
+successTip:"Diseño listo!",
+errTip:"Fallo carga, reintenta",
+saveTip:"☑ IA Distinctive Trend generó tu diseño, mantén imagen para guardar.",
+footText:"Distinctive Trend ofrece diseño IA, imágenes solo referencia.",
+serviceTitle:"Contactar soporte cliente",
+waText:"Soporte WhatsApp",
+lineText:"Soporte LINE"
+},
+pt:{
+title:"Design IA | Distinctive Trend",
+desc:"Crie uma estética exclusiva e transforme suas ideias em estampas de roupa personalizadas.",
+subTitle:"Geração IA de estampas artesanais",
+inputPlaceholder:"Insira sua ideia",
+inputTip:"Dica: detalhe sua arte para resultado fiel",
+btnText:"Iniciar geração IA DistinctiveTrend",
+emptyTip:"Insira sua ideia antes de continuar!",
+loadingTip:"IA criando arte, aguarde 5 a 12 segundos...",
+successTip:"Arte criada com sucesso!",
+errTip:"Falha carregamento, tente novamente",
+saveTip:"☑ IA Distinctive Trend gerou sua arte, segure para salvar.",
+footText:"Distinctive Trend presta serviço de design IA, imagens apenas referência.",
+serviceTitle:"Fale com o atendimento",
+waText:"Suporte WhatsApp",
+lineText:"Suporte LINE"
+}
+};
 
-img.onmousedown=()=>{
-  longTimer=setTimeout(()=>{
-    let a=document.createElement('a')
-    a.href=saveUrl;a.download='Distinct_Pattern.png';a.click()
+const langSel = document.getElementById('langSelect');
+const input = document.getElementById('userInput');
+const btn = document.getElementById('genBtn');
+const img = document.getElementById('resultImg');
+const loadTip = document.getElementById('loadingTip');
+let saveImgUrl = "";
+let pressTimer = null;
+
+function setLang(key){
+  const t = langData[key];
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.innerText = t[el.dataset.i18n]);
+  input.placeholder = t.inputPlaceholder;
+}
+setLang("en");
+langSel.onchange = ()=>setLang(langSel.value);
+
+img.onmousedown = ()=>{
+  pressTimer = setTimeout(()=>{
+    if(saveImgUrl){
+      let a = document.createElement('a');
+      a.href = saveImgUrl;
+      a.download = "Pattern.png";
+      a.click();
+    }
   },650)
 }
-img.onmouseup=img.onmouseleave=()=>clearTimeout(longTimer)
+img.onmouseup = img.onmouseleave = ()=>clearTimeout(pressTimer);
 
-btn.onclick=()=>{
-  let word=encodeURIComponent(inp.value.trim()||'fashion print pattern')
-  saveUrl = `https://api.allorigins.win/raw?url=https://image.pollinations.ai/prompt/${word}?width=1024&height=1024&nologo=true`
-  img.src = saveUrl
+//Puter生成逻辑，无外部图片域名、Vercel不会拦截
+btn.onclick = async function(){
+  const txt = langData[langSel.value];
+  let prompt = input.value.trim();
+  if(!prompt){
+    loadTip.innerText = txt.emptyTip;
+    return;
+  }
+  btn.disabled = true;
+  img.style.display = "none";
+  loadTip.innerText = txt.loadingTip;
+  //自动追加T恤印花参数
+  const fullPrompt = prompt + ",t-shirt graphic print,clean pure white background,high detail vector";
+  try{
+    //内置AI生成，前端JS直接返回图片地址
+    const imgSrc = await puter.ai.txt2img(fullPrompt,{model:"flux"});
+    saveImgUrl = imgSrc;
+    img.src = imgSrc;
+    img.onload = ()=>{
+      loadTip.innerText = txt.successTip;
+      img.style.display = "block";
+      btn.disabled = false;
+    }
+  }catch(e){
+    loadTip.innerText = txt.errTip;
+    btn.disabled = false;
+  }
 }
 </script>
 </body>

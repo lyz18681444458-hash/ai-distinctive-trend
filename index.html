@@ -47,7 +47,7 @@ h3{font-size:36px;text-align:center;margin:30px 0 14px;color:#222;line-height:1.
 
 <div class="top-black">
   <h1 data-i18n="title">AI Custom Design | Distinctive Trend</h1>
-  <p data-i18n="desc">Build exclusive personality and fashion aesthetics. Realize your creative concepts with custom-made apparel patterns.</p >
+  <p data-i18n="desc">Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made apparel patterns.</p >
 </div>
 
 <div class="wrap">
@@ -64,20 +64,16 @@ h3{font-size:36px;text-align:center;margin:30px 0 14px;color:#222;line-height:1.
 <div class="customer-box">
   <div class="customer-title" data-i18n="serviceTitle">Contact Our Customer Service</div>
   <div class="btn-group">
-    <a class="whatsapp-btn" href=" " target="_blank" rel="noopener">💬 <span data-i18n="waText">WhatsApp Support</span></a >
-    <a class="line-btn" href="https://line.me/ti/p/K46gpe9AsF" target="_blank" rel="noopener">🟢 <span data-i18n="lineText">LINE Support</span></a >
+    <a class="whatsapp-btn" href="" target="_blank" rel="noopener">💬 <span data-i18n="waText">WhatsApp Support</span></a >
+    <a class="line-btn" href=" " target="_blank" rel="noopener">🟢 <span data-i18n="lineText">LINE Support</span></a >
   </div>
 </div>
 
 <script>
-const DOMAINS = ["https://image.pollinations.ai/prompt/","https://pollinations.ai/prompt/"];
-const PARAM = "?model=flux&width=1024&height=1024&nologo=true";
-let domIndex=0;
-
 const langData={
 en:{
 title:"AI Custom Design | Distinctive Trend",
-desc:"Build exclusive personality and fashion aesthetics. Realize your creative concepts with custom-made apparel patterns.",
+desc:"Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made apparel patterns.",
 subTitle:"Start Your Product Hand-Painted Pattern AI Generation",
 inputPlaceholder:"Enter your design ideas",
 inputTip:"Tips:Describe clothing print details for accurate image",
@@ -219,51 +215,50 @@ const btn = document.getElementById('genBtn');
 const img = document.getElementById('resultImg');
 const loadTip = document.getElementById('loadingTip');
 let saveImgUrl = "";
+let pressTimer = null;
 
 function setLang(key){
   const t = langData[key];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    if(el.dataset.i18n) el.textContent = t[el.dataset.i18n];
-  });
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.innerText = t[el.dataset.i18n]);
   input.placeholder = t.inputPlaceholder;
 }
 setLang("en");
 langSel.onchange = ()=>setLang(langSel.value);
 
 img.onmousedown = ()=>{
-  let t = setTimeout(()=>{
+  pressTimer = setTimeout(()=>{
     if(saveImgUrl){
       let a = document.createElement('a');
       a.href = saveImgUrl;
       a.download = "Pattern.png";
       a.click();
     }
-  },650);
-  img.onmouseup=()=>clearTimeout(t);
+  },650)
 }
+img.onmouseup = img.onmouseleave = ()=>clearTimeout(pressTimer);
 
+//新版代理生成代码
 btn.onclick = function(){
   const txt = langData[langSel.value];
   let prompt = input.value.trim();
   if(!prompt){
-    loadTip.textContent = txt.emptyTip;
+    loadTip.innerText = txt.emptyTip;
     return;
   }
   btn.disabled = true;
   img.style.display = "none";
-  loadTip.textContent = txt.loadingTip;
-  const fullTxt = prompt + ",t-shirt graphic print,clean pure white background,vector graphic,sharp outline,commercial print";
-  let url = DOMAINS[domIndex] + encodeURIComponent(fullTxt) + PARAM;
-  domIndex = (domIndex+1)%DOMAINS.length;
-  saveImgUrl = url;
-  img.src = url;
+  loadTip.innerText = txt.loadingTip;
+  const fullPrompt = prompt + ",t-shirt graphic print,clean pure white background,high detail vector";
+  const finalUrl = `/proxy/prompt/${encodeURIComponent(fullPrompt)}?nologo=true&width=960&height=960&model=flux`;
+  saveImgUrl = finalUrl;
+  img.src = finalUrl;
   img.onload = ()=>{
-    loadTip.textContent = txt.successTip;
+    loadTip.innerText = txt.successTip;
     img.style.display = "block";
     btn.disabled = false;
   }
   img.onerror = ()=>{
-    loadTip.textContent = txt.errTip;
+    loadTip.innerText = txt.errTip;
     btn.disabled = false;
   }
 }

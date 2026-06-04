@@ -52,7 +52,6 @@ img.onmouseup=img.onmouseleave=()=>clearTimeout(longTimer)
 
 btn.onclick=()=>{
   let word=encodeURIComponent(inp.value.trim())
-  // 增加跨域代理前缀，根治图片问号
   saveUrl = `https://corsproxy.io/?https://image.pollinations.ai/prompt/${word}?width=1024&height=1024&nologo=true`
   img.src = saveUrl
 }

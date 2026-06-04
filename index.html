@@ -223,7 +223,7 @@ let saveImgUrl = "";
 function setLang(key){
   const t = langData[key];
   document.querySelectorAll('[data-i18n]').forEach(el=>{
-    if(el.dataset.i18n) el.innerText = t[el.dataset.i18n];
+    if(el.dataset.i18n) el.textContent = t[el.dataset.i18n];
   });
   input.placeholder = t.inputPlaceholder;
 }
@@ -242,29 +242,28 @@ img.onmousedown = ()=>{
   img.onmouseup=()=>clearTimeout(t);
 }
 
-//按钮点击核心修复
 btn.onclick = function(){
   const txt = langData[langSel.value];
   let prompt = input.value.trim();
   if(!prompt){
-    loadTip.innerText = txt.emptyTip;
+    loadTip.textContent = txt.emptyTip;
     return;
   }
   btn.disabled = true;
   img.style.display = "none";
-  loadTip.innerText = txt.loadingTip;
+  loadTip.textContent = txt.loadingTip;
   const fullTxt = prompt + ",t-shirt graphic print,clean pure white background,vector graphic,sharp outline,commercial print";
   let url = DOMAINS[domIndex] + encodeURIComponent(fullTxt) + PARAM;
   domIndex = (domIndex+1)%DOMAINS.length;
   saveImgUrl = url;
   img.src = url;
   img.onload = ()=>{
-    loadTip.innerText = txt.successTip;
+    loadTip.textContent = txt.successTip;
     img.style.display = "block";
     btn.disabled = false;
   }
   img.onerror = ()=>{
-    loadTip.innerText = txt.errTip;
+    loadTip.textContent = txt.errTip;
     btn.disabled = false;
   }
 }

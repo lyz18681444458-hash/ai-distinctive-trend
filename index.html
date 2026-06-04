@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 *{box-sizing:border-box;font-family:Arial}
 .top-black{
@@ -53,7 +54,8 @@ img.onmouseup=img.onmouseleave=()=>clearTimeout(longTimer)
 
 btn.onclick=()=>{
   let word=encodeURIComponent(inp.value.trim())
-  saveUrl = `https://corsproxy.io/?https://image.pollinations.ai/prompt/${word}?width=1024&height=1024&nologo=true`
+  // 更换allorigins备用跨域，规避corsproxy失效
+  saveUrl = `https://api.allorigins.win/raw?url=https://image.pollinations.ai/prompt/${word}?width=1024&height=1024&nologo=true`
   img.src = saveUrl
 }
 </script>

@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Custom Design | Distinctive Trend</title>
-<!-- Puter官方CDN，Vercel白名单域名，不会被拦截 -->
 <script src="https://js.puter.com/v2/"></script>
 <style>
 *{box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;margin:0;padding:0}
@@ -49,7 +48,7 @@ h3{font-size:36px;text-align:center;margin:30px 0 14px;color:#222;line-height:1.
 
 <div class="top-black">
   <h1 data-i18n="title">AI Custom Design | Distinctive Trend</h1>
-  <p data-i18n="desc">Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made apparel patterns.</p >
+  <p data-i18n="desc">Build exclusive personality and fashion aesthetics. Realize your creative concepts with custom-made apparel patterns.</p >
 </div>
 
 <div class="wrap">
@@ -75,7 +74,7 @@ h3{font-size:36px;text-align:center;margin:30px 0 14px;color:#222;line-height:1.
 const langData={
 en:{
 title:"AI Custom Design | Distinctive Trend",
-desc:"Build exclusive personality and fashion aesthetics. Realize your creative concepts<br>with custom-made apparel patterns.",
+desc:"Build exclusive personality and fashion aesthetics. Realize your creative concepts with custom-made apparel patterns.",
 subTitle:"Start Your Product Hand-Painted Pattern AI Generation",
 inputPlaceholder:"Enter your design ideas",
 inputTip:"Tips:Describe clothing print details for accurate image",
@@ -217,7 +216,6 @@ const btn = document.getElementById('genBtn');
 const img = document.getElementById('resultImg');
 const loadTip = document.getElementById('loadingTip');
 let saveImgUrl = "";
-let pressTimer = null;
 
 function setLang(key){
   const t = langData[key];
@@ -228,18 +226,17 @@ setLang("en");
 langSel.onchange = ()=>setLang(langSel.value);
 
 img.onmousedown = ()=>{
-  pressTimer = setTimeout(()=>{
+  let t = setTimeout(()=>{
     if(saveImgUrl){
       let a = document.createElement('a');
       a.href = saveImgUrl;
       a.download = "Pattern.png";
       a.click();
     }
-  },650)
+  },650);
+  img.onmouseup=()=>clearTimeout(t);
 }
-img.onmouseup = img.onmouseleave = ()=>clearTimeout(pressTimer);
 
-//Puter生成逻辑，无外部图片域名、Vercel不会拦截
 btn.onclick = async function(){
   const txt = langData[langSel.value];
   let prompt = input.value.trim();
@@ -250,10 +247,8 @@ btn.onclick = async function(){
   btn.disabled = true;
   img.style.display = "none";
   loadTip.innerText = txt.loadingTip;
-  //自动追加T恤印花参数
   const fullPrompt = prompt + ",t-shirt graphic print,clean pure white background,high detail vector";
   try{
-    //内置AI生成，前端JS直接返回图片地址
     const imgSrc = await puter.ai.txt2img(fullPrompt,{model:"flux"});
     saveImgUrl = imgSrc;
     img.src = imgSrc;
